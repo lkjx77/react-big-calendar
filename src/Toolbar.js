@@ -14,22 +14,25 @@ class Toolbar extends React.Component {
   }
 
   render() {
-    let { localizer: { messages }, label } = this.props
+    let {
+      localizer: { messages },
+      label,
+    } = this.props
 
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
           <button
             type="button"
-            onClick={this.navigate.bind(null, navigate.TODAY)}
-          >
-            {messages.today}
-          </button>
-          <button
-            type="button"
             onClick={this.navigate.bind(null, navigate.PREVIOUS)}
           >
             {messages.previous}
+          </button>
+          <button
+            type="button"
+            onClick={this.navigate.bind(null, navigate.TODAY)}
+          >
+            {messages.today}
           </button>
           <button
             type="button"
