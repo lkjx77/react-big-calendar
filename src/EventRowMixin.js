@@ -26,6 +26,7 @@ export default {
   },
 
   renderEvent(props, event) {
+    // console.log(`render Event cell: ${JSON.stringify(props)} event: ${event}`)
     let {
       selected,
       isAllDay: _,
@@ -58,7 +59,7 @@ export default {
   },
 
   renderSpan(slots, len, key, content = ' ') {
-    let per = Math.abs(len) / slots * 100 + '%'
+    let per = (Math.abs(len) / slots) * 100 + '%'
 
     return (
       <div

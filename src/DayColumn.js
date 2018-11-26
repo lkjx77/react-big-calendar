@@ -191,6 +191,10 @@ class DayColumn extends React.Component {
       minimumStartDifference: Math.ceil((step * timeslots) / 2),
     })
 
+    // console.log(`DayColumn slotMetrics: ${JSON.stringify(slotMetrics)}`)
+    // console.log(`DayColumn styledEvents: ${JSON.stringify(styledEvents)}`)
+    // console.log(`DayColumn events: ${JSON.stringify(events)}`)
+
     return styledEvents.map(({ event, style }, idx) => {
       let end = accessors.end(event)
       let start = accessors.start(event)

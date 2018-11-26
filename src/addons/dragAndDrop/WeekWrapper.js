@@ -22,7 +22,7 @@ const eventTimes = (event, accessors) => {
   return { start, end }
 }
 
-class WeekWrapper extends React.Component {
+class WeekWrapper extends React.PureComponent {
   static propTypes = {
     isAllDay: PropTypes.bool,
     slotMetrics: PropTypes.object.isRequired,
@@ -65,6 +65,7 @@ class WeekWrapper extends React.Component {
       dragAccessors
     )
 
+    // console.log(`event segments: ${JSON.stringify(segment)}`)
     const { segment: lastSegment } = this.state
     if (
       lastSegment &&
@@ -72,8 +73,11 @@ class WeekWrapper extends React.Component {
       segment.left === lastSegment.left &&
       segment.right === lastSegment.right
     ) {
+      // console.log(`lastSegment: ${JSON.stringify(lastSegment)}`)
       return
     }
+
+    // console.log(`state segment: ${JSON.stringify(segment)}`)
     this.setState({ segment })
   }
 
@@ -115,9 +119,26 @@ class WeekWrapper extends React.Component {
     let rowBox = getBoundsForNode(node)
     let cursorInRow = pointInBox(rowBox, point)
 
+    // console.log(`right resize point : ${JSON.stringify(point)}`)
+    // console.log(`right resize node: ${JSON.stringify(node)}`)
+    // console.log(`right resize rowBox: ${JSON.stringify(rowBox)}`)
+
     if (direction === 'RIGHT') {
+      // console.log(`cursorInRow: ${cursorInRow}`)
+      // console.log(`metrics.first: ${JSON.stringify(metrics.first)}`)
+      // console.log(`metrics.last: ${JSON.stringify(metrics.last)}`)
+      // console.log(`metrics.slots: ${metrics.slots}`)
+
       if (cursorInRow) {
         if (metrics.last < start) return this.reset()
+
+        // const cursorInRowSlot = getSlotAtX(
+        //   rowBox,
+        //   point.x,
+        //   false,
+        //   metrics.slots
+        // )
+
         // add min
         end = dates.add(
           metrics.getDateForSlot(
@@ -126,18 +147,31 @@ class WeekWrapper extends React.Component {
           1,
           'day'
         )
+        // console.log(`cursorInRowSlot: ${cursorInRowSlot}, end: ${end}`)
       } else if (
-        dates.inRange(start, metrics.first, metrics.last) ||
-        (rowBox.bottom < point.y && +metrics.first > +start)
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right < point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        // this.setState({ segment: null })
+        // return
+        end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        rowBox.bottom < point.y &&
+        rowBox.right > point.x &&
+        metrics.first > start
       ) {
         end = dates.add(metrics.last, 1, 'milliseconds')
       } else {
+        // console.log(`RIGHT null:`)
         this.setState({ segment: null })
         return
       }
 
       end = dates.max(end, dates.add(start, 1, 'day'))
     } else if (direction === 'LEFT') {
+      // console.log(`LEFT resize`)
       // inbetween Row
       if (cursorInRow) {
         if (metrics.first > end) return this.reset()
@@ -151,6 +185,7 @@ class WeekWrapper extends React.Component {
       ) {
         start = dates.add(metrics.first, -1, 'milliseconds')
       } else {
+        // console.log(`Left null:`)
         this.reset()
         return
       }
@@ -158,6 +193,9 @@ class WeekWrapper extends React.Component {
       start = dates.min(dates.add(end, -1, 'day'), start)
     }
 
+    // console.log(
+    //   `event-> ${JSON.stringify(event)} , start: ${start}, end: ${end}`
+    // )
     this.update(event, start, end)
   }
 
@@ -194,6 +232,8 @@ class WeekWrapper extends React.Component {
       this.handleInteractionEnd()
     })
     selector.on('click', () => this.context.draggable.onEnd(null))
+    // onReset end +++
+    selector.on('reset', () => this.context.draggable.onEnd(null))
   }
 
   handleInteractionEnd = () => {
@@ -221,10 +261,21 @@ class WeekWrapper extends React.Component {
 
     let { segment } = this.state
 
+    // console.log(`draw segment: ${JSON.stringify(segment)}`)
+
     return (
       <div className="rbc-addons-dnd-row-body">
+        <div className="child" />
         {children}
 
+        <div className="segment begin" />
+        {/* {console.log(
+          `slotMetrics.first: ${JSON.stringify(this.props.slotMetrics.first)}`
+        )}
+        {console.log(
+          `slotMetrics.last: ${JSON.stringify(this.props.slotMetrics.last)}`
+        )}
+        {console.log(`addtional segment: ${JSON.stringify(segment)}`)} */}
         {segment && (
           <EventRow
             {...this.props}
@@ -237,6 +288,8 @@ class WeekWrapper extends React.Component {
             }}
           />
         )}
+
+        <div className="segment end" />
       </div>
     )
   }
