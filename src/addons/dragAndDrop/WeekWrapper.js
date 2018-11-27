@@ -159,6 +159,13 @@ class WeekWrapper extends React.PureComponent {
         end = dates.add(metrics.last, 1, 'milliseconds')
       } else if (rowBox.bottom < point.y && +metrics.first > +start) {
         end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right > point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        end = dates.add(metrics.last, 1, 'milliseconds')
       } else {
         // console.log(`RIGHT null:`)
         this.setState({ segment: null })
@@ -176,8 +183,19 @@ class WeekWrapper extends React.PureComponent {
           getSlotAtX(rowBox, point.x, false, metrics.slots)
         )
       } else if (
-        dates.inRange(end, metrics.first, metrics.last) ||
-        (rowBox.top > point.y && +metrics.last < +end)
+        dates.inRange(end, metrics.first, metrics.last) &&
+        (rowBox.left > point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        start = dates.add(metrics.first, -1, 'milliseconds')
+      } else if (rowBox.top > point.y && +metrics.last < +end) {
+        start = dates.add(metrics.first, -1, 'milliseconds')
+      } else if (
+        dates.inRange(end, metrics.first, metrics.last) &&
+        (rowBox.left < point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
       ) {
         start = dates.add(metrics.first, -1, 'milliseconds')
       } else {
