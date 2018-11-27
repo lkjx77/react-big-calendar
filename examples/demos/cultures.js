@@ -6,6 +6,7 @@ import Layout from 'react-tackle-box/Layout'
 import ExampleControlSlot from '../ExampleControlSlot'
 
 require('globalize/lib/cultures/globalize.culture.en-GB')
+require('globalize/lib/cultures/globalize.culture.en-NZ')
 require('globalize/lib/cultures/globalize.culture.es')
 require('globalize/lib/cultures/globalize.culture.fr')
 require('globalize/lib/cultures/globalize.culture.ar-AE')
@@ -15,7 +16,7 @@ class Cultures extends React.Component {
 
   render() {
     const { localizer } = this.props
-    let cultures = ['en', 'en-GB', 'es', 'fr', 'ar-AE']
+    let cultures = ['en', 'en-GB', 'en-NZ', 'es', 'fr', 'ar-AE']
     let rtl = this.state.culture === 'ar-AE'
 
     return (
