@@ -157,11 +157,7 @@ class WeekWrapper extends React.PureComponent {
         // this.setState({ segment: null })
         // return
         end = dates.add(metrics.last, 1, 'milliseconds')
-      } else if (
-        rowBox.bottom < point.y &&
-        rowBox.right > point.x &&
-        metrics.first > start
-      ) {
+      } else if (rowBox.bottom < point.y && +metrics.first > +start) {
         end = dates.add(metrics.last, 1, 'milliseconds')
       } else {
         // console.log(`RIGHT null:`)

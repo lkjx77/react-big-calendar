@@ -47,7 +47,10 @@ export default function(moment) {
     formats,
     firstOfWeek(culture) {
       let data = culture ? moment.localeData(culture) : moment.localeData()
-      return data ? data.firstDayOfWeek() : 0
+      // bug fix
+      // firstDayOfWeek always return 0
+      return data ? 1 : 0
+      // return data ? data.firstDayOfWeek() : 0
     },
 
     format(value, format, culture) {
