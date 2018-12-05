@@ -43,10 +43,15 @@ class EventCell extends React.Component {
     } = this.props
 
     let title = accessors.title(event)
-    let tooltip = accessors.tooltip(event)
+    // let tooltip = accessors.tooltip(event)
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
+
+    // format title HH:MM - HH:MM : title
+    const startTime = dates.getTimeHHMM(start)
+    const endTime = dates.getTimeHHMM(end)
+    const titleFormmat = `${startTime} - ${endTime}: ${title}`
 
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
@@ -54,16 +59,16 @@ class EventCell extends React.Component {
     let userProps = getters.eventProp(event, start, end, selected)
 
     const content = (
-      <div className="rbc-event-content" title={tooltip || undefined}>
+      <div className="rbc-event-content" title={titleFormmat || undefined}>
         {Event ? (
           <Event
             event={event}
-            title={title}
+            title={titleFormmat}
             isAllDay={allDay}
             localizer={localizer}
           />
         ) : (
-          title
+          titleFormmat
         )}
       </div>
     )

@@ -152,6 +152,10 @@ let dates = {
   tomorrow() {
     return dates.add(dates.startOf(new Date(), 'day'), 1, 'day')
   },
+
+  getTimeHHMM(date) {
+    return `${dateMath.hours(date)}:${dateMath.minutes(date)}`
+  },
 }
 
 export default dates
