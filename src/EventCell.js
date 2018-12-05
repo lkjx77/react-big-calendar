@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import cn from 'classnames'
 import dates from './utils/dates'
+import moment from 'moment'
 
 let propTypes = {
   event: PropTypes.object.isRequired,
@@ -49,8 +50,8 @@ class EventCell extends React.Component {
     let allDay = accessors.allDay(event)
 
     // format title HH:MM - HH:MM : title
-    const startTime = dates.getTimeHHMM(start)
-    const endTime = dates.getTimeHHMM(end)
+    const startTime = moment(start).format('hh:mm A')
+    const endTime = moment(end).format('hh:mm A')
     const titleFormmat = `${startTime} - ${endTime}: ${title}`
 
     let showAsAllDay =
