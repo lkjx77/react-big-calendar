@@ -182,7 +182,7 @@ class TimeGridHeader extends React.Component {
             >
               {this.renderHeaderCells(range)}
             </div>
-            <DateContentRow
+            {/* <DateContentRow
               isAllDay
               rtl={rtl}
               getNow={getNow}
@@ -201,7 +201,7 @@ class TimeGridHeader extends React.Component {
               onDoubleClick={this.props.onDoubleClickEvent}
               onSelectSlot={this.props.onSelectSlot}
               longPressThreshold={this.props.longPressThreshold}
-            />
+            /> */}
           </div>
         ))}
       </div>

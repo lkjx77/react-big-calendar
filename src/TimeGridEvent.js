@@ -43,9 +43,10 @@ function TimeGridEvent(props) {
         style={{
           ...userProps.style,
           top: `${top}%`,
-          height: `${height}%`,
-          [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
-          width: `${width}%`,
+          // height: `${height}%`,
+          // [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
+          width: `${100}%`,
+          height: `22px`,
         }}
         title={
           tooltip
