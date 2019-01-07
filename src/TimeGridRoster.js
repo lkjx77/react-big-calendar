@@ -3,19 +3,18 @@ import cn from 'classnames'
 import raf from 'dom-helpers/util/requestAnimationFrame'
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import memoize from 'memoize-one'
 
 import dates from './utils/dates'
-import DayColumn from './DayColumn'
+import DayColumnRoster from './DayColumnRoster'
 import TimeGutter from './TimeGutter'
 
 import getWidth from 'dom-helpers/query/width'
-import TimeGridHeader from './TimeGridHeader'
+import TimeGridHeaderRoster from './TimeGridHeaderRoster'
 import { notify } from './utils/helpers'
 import { inRange, sortEvents } from './utils/eventLevels'
 import Resources from './utils/Resources'
 
-export default class TimeGrid extends Component {
+export default class TimeGridRoster extends Component {
   static propTypes = {
     events: PropTypes.array.isRequired,
     resources: PropTypes.array,
@@ -66,6 +65,8 @@ export default class TimeGrid extends Component {
     this.state = { gutterWidth: undefined, isOverflowing: null }
 
     this.scrollRef = React.createRef()
+
+    this.resources = Resources(props.resources, props.accessors)
   }
 
   componentWillMount() {
@@ -94,7 +95,6 @@ export default class TimeGrid extends Component {
     raf.cancel(this.rafHandle)
     this.rafHandle = raf(this.checkOverflow)
   }
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize)
 
@@ -144,10 +144,9 @@ export default class TimeGrid extends Component {
   renderEvents(range, events, now) {
     let { min, max, components, accessors, localizer } = this.props
 
-    const resources = this.memoizedResources(this.props.resources, accessors)
-    const groupedEvents = resources.groupEvents(events)
+    const groupedEvents = this.resources.groupEvents(events)
 
-    return resources.map(([id, resource], i) =>
+    return this.resources.map(([id, resource], i) =>
       range.map((date, jj) => {
         let daysEvents = (groupedEvents.get(id) || []).filter(event =>
           dates.inRange(
@@ -159,7 +158,7 @@ export default class TimeGrid extends Component {
         )
 
         return (
-          <DayColumn
+          <DayColumnRoster
             {...this.props}
             localizer={localizer}
             min={dates.merge(date, min)}
@@ -227,14 +226,14 @@ export default class TimeGrid extends Component {
       <div
         className={cn('rbc-time-view', resources && 'rbc-time-view-resources')}
       >
-        <TimeGridHeader
+        <TimeGridHeaderRoster
           range={range}
           events={allDayEvents}
           width={width}
           getNow={getNow}
           localizer={localizer}
           selected={selected}
-          resources={this.memoizedResources(resources, accessors)}
+          resources={this.resources}
           selectable={this.props.selectable}
           accessors={accessors}
           getters={getters}
@@ -315,8 +314,4 @@ export default class TimeGrid extends Component {
       })
     }
   }
-
-  memoizedResources = memoize((resources, accessors) =>
-    Resources(resources, accessors)
-  )
 }

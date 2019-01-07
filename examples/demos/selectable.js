@@ -46,8 +46,8 @@ class Selectable extends React.Component {
           defaultDate={new Date(2015, 3, 12)}
           onSelectEvent={event => alert(event.title)}
           onSelectSlot={this.handleSelect}
-          step={180}
-          timeslots={1}
+          step={15}
+          timeslots={8}
         />
       </>
     )

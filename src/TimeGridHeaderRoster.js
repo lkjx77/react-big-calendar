@@ -8,7 +8,7 @@ import DateContentRow from './DateContentRow'
 import Header from './Header'
 import { notify } from './utils/helpers'
 
-class TimeGridHeader extends React.Component {
+class TimeGridHeaderRoster extends React.Component {
   static propTypes = {
     range: PropTypes.array.isRequired,
     events: PropTypes.array.isRequired,
@@ -150,6 +150,9 @@ class TimeGridHeader extends React.Component {
     if (isOverflowing) {
       style[rtl ? 'marginLeft' : 'marginRight'] = `${scrollbarSize()}px`
     }
+    style['overflow'] = 'auto'
+    style['minHeight'] = '300px'
+    style['maxHeight'] = '580px'
 
     const groupedEvents = resources.groupEvents(events)
 
@@ -159,12 +162,12 @@ class TimeGridHeader extends React.Component {
         ref={scrollRef}
         className={cn('rbc-time-header', isOverflowing && 'rbc-overflowing')}
       >
-        <div
+        {/* <div
           className="rbc-label rbc-time-header-gutter"
           style={{ width, minWidth: width, maxWidth: width }}
         >
           {TimeGutterHeader && <TimeGutterHeader />}
-        </div>
+        </div> */}
 
         {resources.map(([id, resource], idx) => (
           <div className="rbc-time-header-content" key={id || idx}>
@@ -209,4 +212,4 @@ class TimeGridHeader extends React.Component {
   }
 }
 
-export default TimeGridHeader
+export default TimeGridHeaderRoster

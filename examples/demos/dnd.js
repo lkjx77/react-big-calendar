@@ -82,6 +82,7 @@ class Dnd extends React.Component {
         localizer={this.props.localizer}
         events={this.state.events}
         onEventDrop={this.moveEvent}
+        views={['month', 'roster', 'day']}
         resizable
         onEventResize={this.resizeEvent}
         onSelectSlot={this.newEvent}
