@@ -2,20 +2,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import dates from './utils/dates'
 import { navigate } from './utils/constants'
-import TimeGrid from './TimeGrid'
+import TimeGridRoster from './TimeGridRoster'
 
 class Roster extends React.Component {
   static propTypes = {
     date: PropTypes.instanceOf(Date).isRequired,
   }
 
-  static defaultProps = TimeGrid.defaultProps
+  static defaultProps = TimeGridRoster.defaultProps
 
   render() {
     let { date, ...props } = this.props
     let range = Roster.range(date, this.props)
 
-    return <TimeGrid {...props} range={range} eventOffset={15} />
+    return <TimeGridRoster {...props} range={range} eventOffset={15} />
   }
 }
 

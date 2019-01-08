@@ -84,12 +84,16 @@ let dates = {
   },
 
   isJustDate(date) {
-    return (
-      dates.hours(date) === 0 &&
-      dates.minutes(date) === 0 &&
-      dates.seconds(date) === 0 &&
-      dates.milliseconds(date) === 0
-    )
+    if (!(date === '' || date === null || date === undefined)) {
+      return (
+        dates.hours(date) === 0 &&
+        dates.minutes(date) === 0 &&
+        dates.seconds(date) === 0 &&
+        dates.milliseconds(date) === 0
+      )
+    } else {
+      return false
+    }
   },
 
   duration(start, end, unit, firstOfWeek) {

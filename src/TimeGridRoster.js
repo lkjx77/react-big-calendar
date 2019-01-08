@@ -228,7 +228,7 @@ export default class TimeGridRoster extends Component {
       >
         <TimeGridHeaderRoster
           range={range}
-          events={allDayEvents}
+          events={events}
           width={width}
           getNow={getNow}
           localizer={localizer}
