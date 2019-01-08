@@ -161,9 +161,9 @@ class DayColumn extends React.Component {
             <span>{localizer.format(selectDates, 'selectRangeFormat')}</span>
           </div>
         )}
-        {/* {isNow && (
+        {isNow && (
           <div ref="timeIndicator" className="rbc-current-time-indicator" />
-        )} */}
+        )}
       </div>
     )
   }
