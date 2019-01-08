@@ -201,26 +201,33 @@ export default class TimeGridRoster extends Component {
     this.slots = range.length
 
     let allDayEvents = [],
-      rangeEvents = []
+      rangeEvents = [],
+      allEventsInRange = []
+
+    // events.forEach(event => {
+    //   if (inRange(event, start, end, accessors)) {
+    //     let eStart = accessors.start(event),
+    //       eEnd = accessors.end(event)
+
+    //     if (
+    //       accessors.allDay(event) ||
+    //       (dates.isJustDate(eStart) && dates.isJustDate(eEnd)) ||
+    //       (!showMultiDayTimes && !dates.eq(eStart, eEnd, 'day'))
+    //     ) {
+    //       allDayEvents.push(event)
+    //     } else {
+    //       rangeEvents.push(event)
+    //     }
+    //   }
+    // })
+    // allDayEvents.sort((a, b) => sortEvents(a, b, accessors))
 
     events.forEach(event => {
       if (inRange(event, start, end, accessors)) {
-        let eStart = accessors.start(event),
-          eEnd = accessors.end(event)
-
-        if (
-          accessors.allDay(event) ||
-          (dates.isJustDate(eStart) && dates.isJustDate(eEnd)) ||
-          (!showMultiDayTimes && !dates.eq(eStart, eEnd, 'day'))
-        ) {
-          allDayEvents.push(event)
-        } else {
-          rangeEvents.push(event)
-        }
+        allEventsInRange.push(event)
       }
     })
-
-    allDayEvents.sort((a, b) => sortEvents(a, b, accessors))
+    allEventsInRange.sort((a, b) => sortEvents(a, b, accessors))
 
     return (
       <div
@@ -228,7 +235,7 @@ export default class TimeGridRoster extends Component {
       >
         <TimeGridHeaderRoster
           range={range}
-          events={events}
+          events={allEventsInRange}
           width={width}
           getNow={getNow}
           localizer={localizer}
