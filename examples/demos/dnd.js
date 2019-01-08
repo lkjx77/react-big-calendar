@@ -77,7 +77,7 @@ class Dnd extends React.Component {
     return (
       <DragAndDropCalendar
         selectable
-        step={180}
+        step={1440}
         timeslots={1}
         localizer={this.props.localizer}
         events={this.state.events}
@@ -88,6 +88,7 @@ class Dnd extends React.Component {
         onSelectSlot={this.newEvent}
         defaultView={BigCalendar.Views.MONTH}
         defaultDate={new Date(2015, 3, 12)}
+        classNameCustom="rbc-roster"
       />
     )
   }

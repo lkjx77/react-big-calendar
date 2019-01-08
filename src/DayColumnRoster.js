@@ -13,7 +13,7 @@ import * as DayEventLayout from './utils/DayEventLayout'
 import TimeSlotGroup from './TimeSlotGroup'
 import TimeGridEventRoster from './TimeGridEventRoster'
 
-class DayColumn extends React.Component {
+class DayColumnRoster extends React.Component {
   static propTypes = {
     events: PropTypes.array.isRequired,
     step: PropTypes.number.isRequired,
@@ -134,7 +134,9 @@ class DayColumn extends React.Component {
           selecting && 'rbc-slot-selecting'
         )}
       >
-        {slotMetrics.groups.map((grp, idx) => (
+        <span>Test</span>
+        <span>Test</span>
+        {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
             group={grp}
@@ -142,8 +144,8 @@ class DayColumn extends React.Component {
             getters={getters}
             components={components}
           />
-        ))}
-        <EventContainer
+        ))} */}
+        {/* <EventContainer
           localizer={localizer}
           resource={resource}
           accessors={accessors}
@@ -154,16 +156,16 @@ class DayColumn extends React.Component {
           <div className={cn('rbc-events-container', rtl && 'rtl')}>
             {this.renderEvents()}
           </div>
-        </EventContainer>
+        </EventContainer> */}
 
-        {selecting && (
+        {/* {selecting && (
           <div className="rbc-slot-selection" style={{ top, height }}>
             <span>{localizer.format(selectDates, 'selectRangeFormat')}</span>
           </div>
-        )}
-        {isNow && (
+        )} */}
+        {/* {isNow && (
           <div ref="timeIndicator" className="rbc-current-time-indicator" />
-        )}
+        )} */}
       </div>
     )
   }
@@ -365,4 +367,4 @@ class DayColumn extends React.Component {
   }
 }
 
-export default DayColumn
+export default DayColumnRoster

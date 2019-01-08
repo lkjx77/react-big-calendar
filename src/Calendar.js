@@ -842,6 +842,7 @@ class Calendar extends React.Component {
       events,
       style,
       className,
+      classNameCustom,
       elementProps,
       date: current,
       getNow,
@@ -871,7 +872,7 @@ class Calendar extends React.Component {
     return (
       <div
         {...elementProps}
-        className={cn(className, 'rbc-calendar', props.rtl && 'rbc-is-rtl')}
+        className={cn(className, `${classNameCustom}`, props.rtl && 'rbc-is-rtl')}
         style={style}
       >
         {toolbar && (
