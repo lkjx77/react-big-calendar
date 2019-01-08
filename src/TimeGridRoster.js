@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom'
 
 import dates from './utils/dates'
 import DayColumnRoster from './DayColumnRoster'
-import TimeGutter from './TimeGutter'
+import TimeGutterRoster from './TimeGutterRoster'
 
 import getWidth from 'dom-helpers/query/width'
 import TimeGridHeaderRoster from './TimeGridHeaderRoster'
@@ -259,7 +259,7 @@ export default class TimeGridRoster extends Component {
           className="rbc-time-content"
           onScroll={this.handleScroll}
         >
-          <TimeGutter
+          <TimeGutterRoster
             date={start}
             ref={this.gutterRef}
             localizer={localizer}
