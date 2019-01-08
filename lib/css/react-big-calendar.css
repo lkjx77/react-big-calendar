@@ -29,6 +29,15 @@ button.rbc-input::-moz-focus-inner {
       -ms-flex-align: stretch;
           align-items: stretch;
 }
+.rbc-roster {
+  box-sizing: border-box;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
 .rbc-calendar *,
 .rbc-calendar *:before,
 .rbc-calendar *:after {
@@ -689,6 +698,7 @@ button.rbc-input::-moz-focus-inner {
    -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
+  border-left: 1px solid #DDD;
 }
 .rbc-current-time-indicator {
   position: absolute;
