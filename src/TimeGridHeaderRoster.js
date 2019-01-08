@@ -80,8 +80,8 @@ class TimeGridHeaderRoster extends React.Component {
               {header}
             </a>
           ) : (
-            <span>{header}</span>
-          )}
+              <span>{header}</span>
+            )}
         </div>
       )
     })
@@ -152,7 +152,7 @@ class TimeGridHeaderRoster extends React.Component {
     }
     style['overflow'] = 'auto'
     style['minHeight'] = '300px'
-    style['maxHeight'] = '580px'
+    style['maxHeight'] = '900px'
 
     const groupedEvents = resources.groupEvents(events)
 
@@ -181,7 +181,7 @@ class TimeGridHeaderRoster extends React.Component {
             <div
               className={`rbc-row rbc-time-header-cell${
                 range.length <= 1 ? ' rbc-time-header-cell-single-day' : ''
-              }`}
+                }`}
             >
               {this.renderHeaderCells(range)}
             </div>
