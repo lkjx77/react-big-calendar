@@ -126,6 +126,9 @@ class DayColumnRoster extends React.Component {
 
     const { className, style } = dayProp(max)
 
+    let hours = 0
+    events.map(event => hours = hours + dates.diff(event.start, event.end, 'hours'))
+
     return (
       <div
         style={style}
@@ -139,7 +142,7 @@ class DayColumnRoster extends React.Component {
         )}
       >
         <span>HeadCount: ({events.length}) </span>
-        <span>Hours: {events.length}</span>
+        <span>Hours: {hours}</span>
         {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
