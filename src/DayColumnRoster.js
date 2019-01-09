@@ -105,7 +105,6 @@ class DayColumnRoster extends React.Component {
 
   render() {
     const {
-      events,
       max,
       rtl,
       isNow,
@@ -114,6 +113,10 @@ class DayColumnRoster extends React.Component {
       localizer,
       getters: { dayProp, ...getters },
       components: { eventContainerWrapper: EventContainer, ...components },
+    } = this.props
+
+    let {
+      events
     } = this.props
 
     let { slotMetrics } = this
@@ -145,8 +148,8 @@ class DayColumnRoster extends React.Component {
             getters={getters}
             components={components}
           />
-        ))} */}
-        {/* <EventContainer
+        ))}
+        <EventContainer
           localizer={localizer}
           resource={resource}
           accessors={accessors}
@@ -157,9 +160,9 @@ class DayColumnRoster extends React.Component {
           <div className={cn('rbc-events-container', rtl && 'rtl')}>
             {this.renderEvents()}
           </div>
-        </EventContainer> */}
+        </EventContainer>
 
-        {/* {selecting && (
+        {selecting && (
           <div className="rbc-slot-selection" style={{ top, height }}>
             <span>{localizer.format(selectDates, 'selectRangeFormat')}</span>
           </div>

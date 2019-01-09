@@ -271,7 +271,7 @@ export default class TimeGridRoster extends Component {
             components={components}
             className="rbc-time-gutter"
           />
-          {this.renderEvents(range, rangeEvents, getNow())}
+          {this.renderEvents(range, allEventsInRange, getNow())}
         </div>
       </div>
     )
