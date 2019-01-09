@@ -105,6 +105,7 @@ class DayColumnRoster extends React.Component {
 
   render() {
     const {
+      events,
       max,
       rtl,
       isNow,
@@ -134,8 +135,8 @@ class DayColumnRoster extends React.Component {
           selecting && 'rbc-slot-selecting'
         )}
       >
-        <span>Test</span>
-        <span>Test</span>
+        <span>HeadCount: ({events.length}) </span>
+        <span>Hours: {events.length}</span>
         {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
