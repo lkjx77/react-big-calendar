@@ -124,6 +124,7 @@ class TimeGridHeaderRoster extends React.Component {
         onDoubleClick={this.props.onDoubleClickEvent}
         onSelectSlot={this.props.onSelectSlot}
         longPressThreshold={this.props.longPressThreshold}
+        content="roster"
       />
     )
   }
@@ -204,6 +205,7 @@ class TimeGridHeaderRoster extends React.Component {
               onDoubleClick={this.props.onDoubleClickEvent}
               onSelectSlot={this.props.onSelectSlot}
               longPressThreshold={this.props.longPressThreshold}
+              content="roster"
             />
           </div>
         ))}

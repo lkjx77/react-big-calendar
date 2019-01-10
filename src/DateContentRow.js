@@ -156,6 +156,7 @@ class DateContentRow extends React.Component {
       resourceId,
       longPressThreshold,
       isAllDay,
+      content,
     } = this.props
 
     if (renderForMeasure) return this.renderDummy()
@@ -202,7 +203,7 @@ class DateContentRow extends React.Component {
           )}
           <WeekWrapper isAllDay={isAllDay} {...eventRowProps}>
             {levels.map((segs, idx) => (
-              <EventRow key={idx} segments={segs} {...eventRowProps} />
+              <EventRow key={idx} segments={segs} {...eventRowProps} content={content} />
             ))}
             {!!extra.length && (
               <EventEndingRow
