@@ -53,7 +53,7 @@ class EventCell extends React.Component {
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
 
-    let employeeId = event.EmploeeID
+    let employeeId = event.EmployeeID
 
     // format title HH:MM - HH:MM : title
     const startTime = moment(start).format('hh:mm A')
