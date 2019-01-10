@@ -62,8 +62,11 @@ class EventCell extends React.Component {
     let titleFormmat = `${startTime} - ${endTime}: ${title}`
     if (renderContent !== undefined && renderContent === 'roster') {
       const employee = _.find(employees, { EmployeeID: employeeId })
-      // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
-      titleFormmat = `${employee.FirstName}.${_.first(employee.LastName)}：${startTime} - ${endTime}`
+      if (employee !== undefined) {
+        // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
+        titleFormmat = `${employee.FirstName}.${_.first(employee.LastName)}：${startTime} - ${endTime}`
+      }
+
     }
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
