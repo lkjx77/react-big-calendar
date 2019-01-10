@@ -3,6 +3,7 @@ import React from 'react'
 import cn from 'classnames'
 import dates from './utils/dates'
 import moment from 'moment'
+import _ from 'lodash'
 
 let propTypes = {
   event: PropTypes.object.isRequired,
@@ -45,19 +46,24 @@ class EventCell extends React.Component {
       ...props
     } = this.props
 
+
     let title = accessors.title(event)
     // let tooltip = accessors.tooltip(event)
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
 
+    let employeeId = event.EmploeeID
+
     // format title HH:MM - HH:MM : title
     const startTime = moment(start).format('hh:mm A')
     const endTime = moment(end).format('hh:mm A')
 
     let titleFormmat = `${startTime} - ${endTime}: ${title}`
-    if (renderContent !== undefined) {
-      titleFormmat = ''
+    if (renderContent !== undefined && renderContent === 'roster') {
+      const employee = _.find(employees, { EmployeeID: employeeId })
+      // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
+      titleFormmat = `${employee.FirstName}.${_.first(employee.LastName)}：${startTime} - ${endTime}`
     }
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
