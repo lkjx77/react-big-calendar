@@ -39,6 +39,7 @@ class EventCell extends React.Component {
       accessors,
       getters,
       children,
+      renderContent,
       components: { event: Event, eventWrapper: EventWrapper },
       ...props
     } = this.props
@@ -69,8 +70,8 @@ class EventCell extends React.Component {
             localizer={localizer}
           />
         ) : (
-          titleFormmat
-        )}
+            titleFormmat
+          )}
       </div>
     )
 

@@ -205,7 +205,7 @@ class TimeGridHeaderRoster extends React.Component {
               onDoubleClick={this.props.onDoubleClickEvent}
               onSelectSlot={this.props.onSelectSlot}
               longPressThreshold={this.props.longPressThreshold}
-              content="roster"
+              renderContent="roster"
             />
           </div>
         ))}
