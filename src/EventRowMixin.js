@@ -38,6 +38,7 @@ export default {
       slotMetrics,
       components,
       renderContent,
+      employees,
     } = props
 
     let continuesPrior = slotMetrics.continuesPrior(event)
@@ -56,6 +57,7 @@ export default {
         continuesAfter={continuesAfter}
         selected={isSelected(event, selected)}
         renderContent={renderContent}
+        employees={employees}
       />
     )
   },

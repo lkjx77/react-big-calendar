@@ -40,6 +40,7 @@ class EventCell extends React.Component {
       getters,
       children,
       renderContent,
+      employees,
       components: { event: Event, eventWrapper: EventWrapper },
       ...props
     } = this.props
@@ -53,8 +54,11 @@ class EventCell extends React.Component {
     // format title HH:MM - HH:MM : title
     const startTime = moment(start).format('hh:mm A')
     const endTime = moment(end).format('hh:mm A')
-    const titleFormmat = `${startTime} - ${endTime}: ${title}`
 
+    let titleFormmat = `${startTime} - ${endTime}: ${title}`
+    if (renderContent !== undefined) {
+      titleFormmat = ''
+    }
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
 

@@ -191,6 +191,7 @@ export default class TimeGridRoster extends Component {
       max,
       showMultiDayTimes,
       longPressThreshold,
+      employees,
     } = this.props
 
     width = width || this.state.gutterWidth
@@ -253,6 +254,7 @@ export default class TimeGridRoster extends Component {
           onDoubleClickEvent={this.props.onDoubleClickEvent}
           onDrillDown={this.props.onDrillDown}
           getDrilldownView={this.props.getDrilldownView}
+          employees={employees}
         />
         <div
           ref="content"
