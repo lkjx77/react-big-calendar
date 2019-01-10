@@ -50,7 +50,8 @@ class Toolbar extends React.Component {
   }
 
   navigate = action => {
-    this.props.onNavigate(action)
+    this.props.onNavigate
+      (action)
   }
 
   view = view => {

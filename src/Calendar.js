@@ -69,7 +69,7 @@ class Calendar extends React.Component {
      *
      * @controllable onNavigate
      */
-    date: PropTypes.instanceOf(Date),
+    // date: PropTypes.instanceOf(Date),
 
     /**
      * The current view of the calendar.
