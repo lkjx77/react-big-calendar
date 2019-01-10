@@ -5,9 +5,9 @@ import { navigate } from './utils/constants'
 import TimeGridRoster from './TimeGridRoster'
 
 class Roster extends React.Component {
-  static propTypes = {
-    date: PropTypes.instanceOf(Date).isRequired,
-  }
+  // static propTypes = {
+  //   date: PropTypes.instanceOf(Date).isRequired,
+  // }
 
   static defaultProps = TimeGridRoster.defaultProps
 
