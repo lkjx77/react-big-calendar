@@ -64,7 +64,7 @@ class EventCell extends React.Component {
       const employee = _.find(employees, { EmployeeID: employeeId })
       if (employee !== undefined) {
         // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
-        titleFormmat = `${employee.FirstName}.${_.first(employee.LastName)}：${startTime} - ${endTime}`
+        titleFormmat = `${employee.EmployeeFirstName}.${_.first(employee.EmployeeLastName)}：${startTime} - ${endTime}`
       }
 
     }
