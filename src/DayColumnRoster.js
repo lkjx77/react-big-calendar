@@ -130,14 +130,18 @@ class DayColumnRoster extends React.Component {
     let hours = 0
     events.map(event => {
       const evtStart = dates.max(event.start, min)
-
-      // let evtEnd = dates.add(event.end, 59, "seconds")
       let evtEnd = dates.min(event.end, max)
 
-      if (evtEnd == dates.subtract(max, 59, "seconds")) {
-        evtEnd = dates.add(max, 1, "seconds")
-      }
+      // if (evtEnd == dates.subtract(max, 59, "seconds")) {
+      //   evtEnd = dates.add(max, 1, "seconds")
+      // }
 
+      const equalTime = dates.hours(evtEnd) === dates.hours(max) &&
+        dates.minutes(evtEnd) === dates.minutes(max)
+
+      if (equalTime) {
+        evtEnd = max
+      }
       hours = hours + (dates.diff(evtStart, evtEnd, 'seconds') / 3600)
     })
 
