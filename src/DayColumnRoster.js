@@ -136,7 +136,7 @@ class DayColumnRoster extends React.Component {
         evtEnd = dates.add(evtEnd, 1, "minutes")
       }
 
-      hours = hours + (dates.diff(evtStart, evtEnd, 'minutes') / 60)
+      hours = hours + (dates.diff(evtStart, evtEnd, 'seconds') / 3600)
     })
 
     return (
