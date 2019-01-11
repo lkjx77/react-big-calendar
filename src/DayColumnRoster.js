@@ -106,6 +106,7 @@ class DayColumnRoster extends React.Component {
   render() {
     const {
       max,
+      min,
       rtl,
       isNow,
       resource,
@@ -127,7 +128,12 @@ class DayColumnRoster extends React.Component {
     const { className, style } = dayProp(max)
 
     let hours = 0
-    events.map(event => hours = hours + dates.diff(event.start, event.end, 'hours'))
+    events.map(event => {
+      const evtStart = dates.max(event.start, min)
+      const evtEnd = dates.min(event.end, max)
+
+      hours = hours + (dates.diff(evtStart, evtEnd, 'minutes') / 60).toFixed(2)
+    })
 
     return (
       <div
