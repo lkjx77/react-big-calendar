@@ -132,7 +132,7 @@ class DayColumnRoster extends React.Component {
       const evtStart = dates.max(event.start, min)
       const evtEnd = dates.min(event.end, max)
 
-      hours = hours + (dates.diff(evtStart, evtEnd, 'minutes') / 60).toFixed(2)
+      hours = hours + (dates.diff(evtStart, evtEnd, 'minutes') / 60)
     })
 
     return (
@@ -148,7 +148,7 @@ class DayColumnRoster extends React.Component {
         )}
       >
         <span>HeadCount: ({events.length}) </span>
-        <span>Hours: {hours}</span>
+        <span>Hours: {hours.toFixed(2)}</span>
         {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
