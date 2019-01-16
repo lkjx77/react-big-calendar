@@ -156,8 +156,8 @@ class DayColumnRoster extends React.Component {
           selecting && 'rbc-slot-selecting'
         )}
       >
-        <div className="rbc-event-content">HeadCount: ({events.length}) </div>
-        <div className="rbc-event-content">Hours: {hours.toFixed(2)}</div>
+        <div className="summary-content">HeadCount: ({events.length}) </div>
+        <div className="summary-content">Hours: {hours.toFixed(2)}</div>
         {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
