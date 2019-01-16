@@ -116,9 +116,7 @@ class DayColumnRoster extends React.Component {
       components: { eventContainerWrapper: EventContainer, ...components },
     } = this.props
 
-    let {
-      events
-    } = this.props
+    let { events } = this.props
 
     let { slotMetrics } = this
     let { selecting, top, height, startDate, endDate } = this.state
@@ -136,13 +134,14 @@ class DayColumnRoster extends React.Component {
       //   evtEnd = dates.add(max, 1, "seconds")
       // }
 
-      const equalTime = dates.hours(evtEnd) === dates.hours(max) &&
+      const equalTime =
+        dates.hours(evtEnd) === dates.hours(max) &&
         dates.minutes(evtEnd) === dates.minutes(max)
 
       if (equalTime) {
         evtEnd = max
       }
-      hours = hours + (dates.diff(evtStart, evtEnd, 'seconds') / 3600)
+      hours = hours + dates.diff(evtStart, evtEnd, 'seconds') / 3600
     })
 
     return (
@@ -157,8 +156,8 @@ class DayColumnRoster extends React.Component {
           selecting && 'rbc-slot-selecting'
         )}
       >
-        <span>HeadCount: ({events.length}) </span>
-        <span>Hours: {hours.toFixed(2)}</span>
+        <div className="rbc-event-content">HeadCount: ({events.length}) </div>
+        <div className="rbc-event-content">Hours: {hours.toFixed(2)}</div>
         {/* {slotMetrics.groups.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
@@ -186,9 +185,7 @@ class DayColumnRoster extends React.Component {
             <span>{localizer.format(selectDates, 'selectRangeFormat')}</span>
           </div>
         )} */}
-        {isNow && (
-          <div ref="timeIndicator" className="" />
-        )}
+        {isNow && <div ref="timeIndicator" className="" />}
       </div>
     )
   }
