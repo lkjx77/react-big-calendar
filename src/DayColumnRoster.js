@@ -144,9 +144,11 @@ class DayColumnRoster extends React.Component {
       hours = hours + dates.diff(evtStart, evtEnd, 'seconds') / 3600
     })
 
+    const customStyle = "flex-basis: 14.2857%; max-width: 14.2857%;"
+
     return (
       <div
-        style={style}
+        style={style + customStyle}
         className={cn(
           className,
           'rbc-day-slot',
