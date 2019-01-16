@@ -148,7 +148,7 @@ class DayColumnRoster extends React.Component {
 
     return (
       <div
-        style={style + customStyle}
+        style={{ flexBasis: "14.2857%", maxWidth: "14.2857%" }}
         className={cn(
           className,
           'rbc-day-slot',
