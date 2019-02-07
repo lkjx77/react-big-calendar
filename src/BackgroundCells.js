@@ -83,6 +83,7 @@ class BackgroundCells extends React.Component {
                     dates.month(currentDate) !== dates.month(date) &&
                     'rbc-off-range-bg'
                 )}
+                onClick={e => alert('clicked')}
               />
             </Wrapper>
           )
