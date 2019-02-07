@@ -313,7 +313,7 @@ class DayColumn extends React.Component {
     })
 
     selector.on('click', box => selectorClicksHandler(box, 'click'))
-    selector.on('ontouchstart', box => selectorClicksHandler(box, 'click'))
+    selector.on('ontouchstart', box => selectorClicksHandler(box, 'ontouchstart'))
 
     selector.on('doubleClick', box => selectorClicksHandler(box, 'doubleClick'))
 
