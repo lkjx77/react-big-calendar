@@ -154,6 +154,7 @@ class BackgroundCells extends React.Component {
     })
 
     selector.on('click', point => selectorClicksHandler(point, 'click'))
+    selector.on('ontouchstart', point => selectorClicksHandler(point, 'click'))
 
     selector.on('doubleClick', point =>
       selectorClicksHandler(point, 'doubleClick')
