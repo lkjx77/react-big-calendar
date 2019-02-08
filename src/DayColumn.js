@@ -151,7 +151,8 @@ class DayColumn extends React.Component {
           components={components}
           slotMetrics={slotMetrics}
         >
-          <div className={cn('rbc-events-container', rtl && 'rtl')}>
+          <div className={cn('rbc-events-container', rtl && 'rtl')}
+            onClick={e => alert('event')}>
             {this.renderEvents()}
           </div>
         </EventContainer>
@@ -313,10 +314,10 @@ class DayColumn extends React.Component {
     })
 
     selector.on('click', box => selectorClicksHandler(box, 'click'))
-    selector.on('touchstart', box => selectorClicksHandler(box, 'touchstart'))
-    selector.on('touchend', box => selectorClicksHandler(box, 'touchend'))
-    selector.on('mouseup', box => selectorClicksHandler(box, 'mouseup'))
-    selector.on('mousedown', box => selectorClicksHandler(box, 'mousedown'))
+    // selector.on('touchstart', box => selectorClicksHandler(box, 'touchstart'))
+    // selector.on('touchend', box => selectorClicksHandler(box, 'touchend'))
+    // selector.on('mouseup', box => selectorClicksHandler(box, 'mouseup'))
+    // selector.on('mousedown', box => selectorClicksHandler(box, 'mousedown'))
 
     selector.on('doubleClick', box => selectorClicksHandler(box, 'doubleClick'))
 

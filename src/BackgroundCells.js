@@ -80,10 +80,10 @@ class BackgroundCells extends React.Component {
                   selected && 'rbc-selected-cell',
                   dates.eq(date, current, 'day') && 'rbc-today',
                   currentDate &&
-                    dates.month(currentDate) !== dates.month(date) &&
-                    'rbc-off-range-bg'
+                  dates.month(currentDate) !== dates.month(date) &&
+                  'rbc-off-range-bg'
                 )}
-                
+
               />
             </Wrapper>
           )
@@ -131,13 +131,13 @@ class BackgroundCells extends React.Component {
       }
       if (selector.isSelected(node)) {
         let nodeBox = getBoundsForNode(node)
-        ;({ startIdx, endIdx } = dateCellSelection(
-          this._initial,
-          nodeBox,
-          box,
-          range.length,
-          rtl
-        ))
+          ; ({ startIdx, endIdx } = dateCellSelection(
+            this._initial,
+            nodeBox,
+            box,
+            range.length,
+            rtl
+          ))
       }
 
       this.setState({
@@ -154,10 +154,10 @@ class BackgroundCells extends React.Component {
     })
 
     selector.on('click', point => selectorClicksHandler(point, 'click'))
-    selector.on('touchstart', point => selectorClicksHandler(point, 'touchstart'))
-    selector.on('touchend', point => selectorClicksHandler(point, 'touchend'))
-    selector.on('mouseup', point => selectorClicksHandler(point, 'mouseup'))
-    selector.on('mousedown', point => selectorClicksHandler(point, 'mousedown'))
+    // selector.on('touchstart', point => selectorClicksHandler(point, 'touchstart'))
+    // selector.on('touchend', point => selectorClicksHandler(point, 'touchend'))
+    // selector.on('mouseup', point => selectorClicksHandler(point, 'mouseup'))
+    // selector.on('mousedown', point => selectorClicksHandler(point, 'mousedown'))
 
     selector.on('doubleClick', point =>
       selectorClicksHandler(point, 'doubleClick')
