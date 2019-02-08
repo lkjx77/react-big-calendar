@@ -83,7 +83,7 @@ class BackgroundCells extends React.Component {
                     dates.month(currentDate) !== dates.month(date) &&
                     'rbc-off-range-bg'
                 )}
-                onClick={e => alert('clicked')}
+                
               />
             </Wrapper>
           )
@@ -155,6 +155,9 @@ class BackgroundCells extends React.Component {
 
     selector.on('click', point => selectorClicksHandler(point, 'click'))
     selector.on('touchstart', point => selectorClicksHandler(point, 'touchstart'))
+    selector.on('touchend', point => selectorClicksHandler(point, 'touchend'))
+    selector.on('mouseup', point => selectorClicksHandler(point, 'mouseup'))
+    selector.on('mousedown', point => selectorClicksHandler(point, 'mousedown'))
 
     selector.on('doubleClick', point =>
       selectorClicksHandler(point, 'doubleClick')
