@@ -163,21 +163,21 @@ class Selection {
   // Listen for mousedown and touchstart events. When one is received, disable the other and setup
   // future event handling based on the type of event.
   _addInitialEventListener() {
-    const mouseDownListener = addEventListener('mousedown', e => {
-      this._onInitialEventListener.remove()
-      this._handleInitialEvent(e)
-      this._onInitialEventListener = addEventListener(
-        'mousedown',
-        this._handleInitialEvent
-      )
-    })
-    const touchStartListener = addEventListener('touchstart', e => {
-      this._onInitialEventListener.remove()
-      this._onInitialEventListener = this._addLongPressListener(
-        this._handleInitialEvent,
-        e
-      )
-    })
+    // const mouseDownListener = addEventListener('mousedown', e => {
+    //   this._onInitialEventListener.remove()
+    //   this._handleInitialEvent(e)
+    //   this._onInitialEventListener = addEventListener(
+    //     'mousedown',
+    //     this._handleInitialEvent
+    //   )
+    // })
+    // const touchStartListener = addEventListener('touchstart', e => {
+    //   this._onInitialEventListener.remove()
+    //   this._onInitialEventListener = this._addLongPressListener(
+    //     this._handleInitialEvent,
+    //     e
+    //   )
+    // })
 
     // this._onInitialEventListener = {
     //   remove() {
@@ -185,6 +185,18 @@ class Selection {
     //     touchStartListener.remove()
     //   },
     // }
+
+    addEventListener('mousedown', e => {
+      this._handleInitialEvent(e)
+    })
+
+    addEventListener('touchstart', e => {
+      this._addLongPressListener(
+        this._handleInitialEvent,
+        e
+      )
+    })
+
   }
 
   _handleInitialEvent(e) {
