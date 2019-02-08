@@ -181,8 +181,8 @@ class Selection {
 
     this._onInitialEventListener = {
       remove() {
-        // mouseDownListener.remove()
-        // touchStartListener.remove()
+        mouseDownListener.remove()
+        touchStartListener.remove()
       },
     }
   }
