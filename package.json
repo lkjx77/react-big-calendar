@@ -57,7 +57,6 @@
     "bracketSpacing": true
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "devDependencies": {
@@ -91,7 +90,6 @@
     "moment": "^2.22.2",
     "mt-changelog": "^0.6.1",
     "prettier": "^1.15.1",
-    "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",
     "react-docgen": "^3.0.0-rc.1",
     "react-dom": "^16.6.1",
@@ -112,6 +110,7 @@
     "memoize-one": "^4.0.3",
     "prop-types": "^15.6.2",
     "prop-types-extra": "^1.1.0",
+    "react": "^16.8.1",
     "react-overlays": "^0.8.3",
     "uncontrollable": "^6.0.0",
     "warning": "^4.0.2"
