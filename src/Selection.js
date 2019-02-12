@@ -27,7 +27,7 @@ export function isEvent(node, bounds) {
 function getEventCoordinates(e) {
   let target = e
 
-  if (e.type === 'touchstart') {
+  if (/^touch/.test(e.type)) {
     if (e.touches && e.touches.length) {
       target = e.touches[0]
     } else {
