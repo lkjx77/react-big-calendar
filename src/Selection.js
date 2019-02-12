@@ -28,7 +28,9 @@ function getEventCoordinates(e) {
   let target = e
 
   if (e.touches && e.touches.length) {
-    target = e.touches[0]
+    target = e.touches[0].changedTouches[0]
+  } else {
+    target = e.changedTouches[0]
   }
 
   return {
@@ -185,22 +187,6 @@ class Selection {
         touchStartListener.remove()
       },
     }
-
-    // addEventListener('mousedown', e => {
-    //   this._handleInitialEvent(e)
-    //   this._onInitialEventListener = addEventListener(
-    //     'mousedown',
-    //     this._handleInitialEvent
-    //   )
-    // })
-
-    // addEventListener('touchstart', e => {
-    //   this._addLongPressListener(this._handleInitialEvent, e)
-    //   this._onInitialEventListener = this._addLongPressListener(
-    //     this._handleInitialEvent,
-    //     e
-    //   )
-    // })
   }
 
   _handleInitialEvent(e) {
