@@ -28,7 +28,7 @@ function getEventCoordinates(e) {
   let target = e
 
   if (e.touches && e.touches.length) {
-    target = e.touches[0].changedTouches[0]
+    target = e.touches[0]
   } else {
     target = e.changedTouches[0]
   }
