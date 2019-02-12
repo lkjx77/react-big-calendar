@@ -151,8 +151,7 @@ class DayColumn extends React.Component {
           components={components}
           slotMetrics={slotMetrics}
         >
-          <div className={cn('rbc-events-container', rtl && 'rtl')}
-          >
+          <div className={cn('rbc-events-container', rtl && 'rtl')}>
             {this.renderEvents()}
           </div>
         </EventContainer>
@@ -323,6 +322,9 @@ class DayColumn extends React.Component {
 
     selector.on('select', bounds => {
       if (this.state.selecting) {
+        this._selectSlot({ ...this.state, action: 'select', bounds })
+        this.setState({ selecting: false })
+      } else {
         this._selectSlot({ ...this.state, action: 'select', bounds })
         this.setState({ selecting: false })
       }
