@@ -297,7 +297,7 @@ class Selection {
 
     // Fire click event on touchscreen
 
-    let isTouch = this.isTouch()
+    let isTouch = this.isTouch(e)
     if (isTouch) {
       return this._handleClickEvent(e)
     }
@@ -388,9 +388,8 @@ class Selection {
     )
   }
 
-  isTouch() {
-    let { isTouch } = this._initialEventData
-    return isTouch
+  isTouch(e) {
+    return /^touch/.test(e.type)
   }
 }
 
