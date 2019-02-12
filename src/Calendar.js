@@ -734,7 +734,7 @@ class Calendar extends React.Component {
     resourceIdAccessor: 'id',
     resourceTitleAccessor: 'title',
 
-    longPressThreshold: 250,
+    longPressThreshold: 10,
     getNow: () => new Date(),
   }
 
@@ -872,7 +872,11 @@ class Calendar extends React.Component {
     return (
       <div
         {...elementProps}
-        className={cn(className, `${classNameCustom}`, props.rtl && 'rbc-is-rtl')}
+        className={cn(
+          className,
+          `${classNameCustom}`,
+          props.rtl && 'rbc-is-rtl'
+        )}
         style={style}
       >
         {toolbar && (

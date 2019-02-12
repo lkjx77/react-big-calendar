@@ -47,7 +47,7 @@ const clickTolerance = 5
 const clickInterval = 250
 
 class Selection {
-  constructor(node, { global = false, longPressThreshold = 250 } = {}) {
+  constructor(node, { global = false, longPressThreshold = 10 } = {}) {
     this.container = node
     this.globalMouse = !node || global
     this.longPressThreshold = longPressThreshold
