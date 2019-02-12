@@ -295,15 +295,15 @@ class Selection {
       return this._handleClickEvent(e)
     }
 
-    // User drag-clicked in the Selectable area
-    if (!click) return this.emit('select', bounds)
-
     // Fire click event on touchscreen
 
     let isTouch = this.isTouch()
     if (isTouch) {
       return this._handleClickEvent(e)
     }
+
+    // User drag-clicked in the Selectable area
+    if (!click) return this.emit('select', bounds)
   }
 
   _handleClickEvent(e) {
