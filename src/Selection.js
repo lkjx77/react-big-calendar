@@ -124,7 +124,6 @@ class Selection {
     let touchMoveListener = null
     let touchEndListener = null
     const handleTouchStart = initialEvent => {
-      initialEvent.preventDefault()
       timer = setTimeout(() => {
         cleanup()
         handler(initialEvent)
@@ -265,7 +264,6 @@ class Selection {
         )
         break
       case 'touchstart':
-        e.preventDefault()
         this._handleMoveEvent(e)
         this._onEndListener = addEventListener(
           'touchend',
