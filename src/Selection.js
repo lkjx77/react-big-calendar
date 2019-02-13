@@ -127,21 +127,21 @@ class Selection {
     let timer = null
     let touchMoveListener = null
     let touchEndListener = null
-    // const handleTouchStart = initialEvent => {
-    //   timer = setTimeout(() => {
-    //     cleanup()
-    //     handler(initialEvent)
-    //   }, this.longPressThreshold)
-    //   touchMoveListener = addEventListener('touchmove', () => cleanup())
-    //   touchEndListener = addEventListener('touchend', () => cleanup())
-    // }
-
-    // in mobile, eliminate long press
     const handleTouchStart = initialEvent => {
-      handler(initialEvent)
+      timer = setTimeout(() => {
+        cleanup()
+        handler(initialEvent)
+      }, this.longPressThreshold)
       touchMoveListener = addEventListener('touchmove', () => cleanup())
       touchEndListener = addEventListener('touchend', () => cleanup())
     }
+
+    // in mobile, eliminate long press
+    // const handleTouchStart = initialEvent => {
+    //   handler(initialEvent)
+    //   touchMoveListener = addEventListener('touchmove', () => cleanup())
+    //   touchEndListener = addEventListener('touchend', () => cleanup())
+    // }
 
     const touchStartListener = addEventListener('touchstart', handleTouchStart)
     const cleanup = () => {
