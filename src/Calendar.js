@@ -541,6 +541,7 @@ class Calendar extends React.Component {
      *   dayFormat: (date, , localizer) =>
      *     localizer.format(date, 'DDD', culture),
      *
+     *
      *   dayRangeHeaderFormat: ({ start, end }, culture, localizer) =>
      *     localizer.format(start, { date: 'short' }, culture) + ' — ' +
      *     localizer.format(end, { date: 'short' }, culture)

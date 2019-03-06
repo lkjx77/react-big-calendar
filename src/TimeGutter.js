@@ -51,7 +51,7 @@ export default class TimeGutter extends Component {
     const { resource, components } = this.props
 
     return (
-      <div className="rbc-time-gutter rbc-time-column">
+      <div id="timegutter" className="rbc-time-gutter rbc-time-column">
         {this.slotMetrics.groups.map((grp, idx) => {
           return (
             <TimeSlotGroup
