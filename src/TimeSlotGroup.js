@@ -31,7 +31,6 @@ export default class TimeSlotGroup extends Component {
               <div
                 {...slotProps}
                 className={cn('rbc-time-slot', slotProps.className)}
-                onClick={e => alert('clicked')}
               >
                 {renderSlot && renderSlot(value, idx)}
               </div>
