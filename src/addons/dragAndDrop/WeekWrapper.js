@@ -149,39 +149,33 @@ class WeekWrapper extends React.PureComponent {
         )
         // console.log(`cursorInRowSlot: ${cursorInRowSlot}, end: ${end}`)
       } else if (
-        dates.inRange(start, metrics.first, metrics.last) ||
-        (rowBox.bottom < point.y && +metrics.first > +start)
-
-        // (rowBox.right < point.x &&
-        //   rowBox.top < point.y &&
-        //   rowBox.bottom > point.y)
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right < point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
       ) {
         // this.setState({ segment: null })
         // return
         end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (rowBox.bottom < point.y && +metrics.first > +start) {
+        end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right > point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right > point.x && rowBox.top > point.y)
+      ) {
+        this.setState({ segment: null })
+        return
       } else {
         this.setState({ segment: null })
         return
       }
-      // else if (rowBox.bottom < point.y && +metrics.first > +start) {
-      //   end = dates.add(metrics.last, 1, 'milliseconds')
-      // } else if (
-      //   dates.inRange(start, metrics.first, metrics.last) &&
-      //   (rowBox.right > point.x &&
-      //     rowBox.top < point.y &&
-      //     rowBox.bottom > point.y)
-      // ) {
-      //   end = dates.add(metrics.last, 1, 'milliseconds')
-      // } else if (
-      //   dates.inRange(start, metrics.first, metrics.last) &&
-      //   (rowBox.right > point.x && rowBox.top > point.y)
-      // ) {
-      //   this.setState({ segment: null })
-      //   return
-      // } else {
-      //   this.setState({ segment: null })
-      //   return
-      // }
 
       end = dates.max(end, dates.add(start, 1, 'day'))
     } else if (direction === 'LEFT') {
