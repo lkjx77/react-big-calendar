@@ -254,7 +254,11 @@ class WeekWrapper extends React.PureComponent {
     })
     selector.on('click', () => this.context.draggable.onEnd(null))
     // onReset end +++
-    selector.on('reset', () => this.context.draggable.onEnd(null))
+    // selector.on('reset', () => this.context.draggable.onEnd(null))
+    selector.on('reset', () => {
+      this.reset()
+      this.context.draggable.onEnd(null)
+    })
   }
 
   handleInteractionEnd = () => {
