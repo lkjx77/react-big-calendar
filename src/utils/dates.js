@@ -160,6 +160,20 @@ let dates = {
   getTimeHHMM(date) {
     return `${dateMath.hours(date)}:${dateMath.minutes(date)}`
   },
+
+  inRangeTest(start, end, timeSlotStart, timeSlotEnd) {
+    if (dates.lt(start, timeSlotStart)) {
+      if (dates.lte(end, timeSlotStart)) {
+        return false
+      } else {
+        return true
+      }
+    } else if (dates.gte(start, timeSlotEnd)) {
+      return false
+    } else {
+      return true
+    }
+  },
 }
 
 export default dates
