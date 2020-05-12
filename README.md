@@ -34,7 +34,7 @@ $ npm run examples
 `react-big-calendar` includes two options for handling the date formatting and culture localization, depending
 on your preference of DateTime libraries. You can use either the [Moment.js](http://momentjs.com/) or [Globalize.js](https://github.com/jquery/globalize) localizers.
 
-test abc
+test abcd
 Regardless of your choice, you **must** choose a localizer to use this library:
 
 #### Moment.js
