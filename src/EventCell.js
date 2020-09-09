@@ -46,7 +46,6 @@ class EventCell extends React.Component {
       ...props
     } = this.props
 
-
     let title = accessors.title(event)
     // let tooltip = accessors.tooltip(event)
     let end = accessors.end(event)
@@ -55,23 +54,33 @@ class EventCell extends React.Component {
 
     let employeeId = event.EmployeeID
 
+    let showAsAllDay =
+      isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
+
+    let userProps = getters.eventProp(event, start, end, selected)
+
     // format title HH:MM - HH:MM : title
     const startTime = moment(start).format('hh:mm A')
     const endTime = moment(end).format('hh:mm A')
 
     let titleFormmat = `${startTime} - ${endTime}: ${title}`
+
+    if (showAsAllDay) {
+      const employee = _.find(employees, { EmployeeID: employeeId })
+      titleFormmat = `${employee.EmployeeFirstName}.${_.first(
+        employee.EmployeeLastName
+      )}`
+    }
+
     if (renderContent !== undefined && renderContent === 'roster') {
       const employee = _.find(employees, { EmployeeID: employeeId })
       if (employee !== undefined) {
         // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
-        titleFormmat = `${employee.EmployeeFirstName}.${_.first(employee.EmployeeLastName)}：${startTime} - ${endTime}`
+        titleFormmat = `${employee.EmployeeFirstName}.${_.first(
+          employee.EmployeeLastName
+        )}：${startTime} - ${endTime}`
       }
-
     }
-    let showAsAllDay =
-      isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
-
-    let userProps = getters.eventProp(event, start, end, selected)
 
     const content = (
       <div className="rbc-event-content" title={titleFormmat || undefined}>
@@ -83,8 +92,8 @@ class EventCell extends React.Component {
             localizer={localizer}
           />
         ) : (
-            titleFormmat
-          )}
+          titleFormmat
+        )}
       </div>
     )
 
