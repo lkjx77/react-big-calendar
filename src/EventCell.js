@@ -63,7 +63,7 @@ class EventCell extends React.Component {
     const startTime = moment(start).format('hh:mm A')
     const endTime = moment(end).format('hh:mm A')
 
-    let titleFormmat = `${startTime} - ${endTime}: ${title}`
+    let titleFormmat = 'xxx'
 
     if (showAsAllDay) {
       const employee = _.find(employees, { EmployeeAutoID: employeeId })
@@ -73,6 +73,8 @@ class EventCell extends React.Component {
           employee.EmployeeLastName
         )}`
       }
+    } else {
+      titleFormmat = `${startTime} - ${endTime}: ${title}`
     }
 
     if (renderContent !== undefined && renderContent === 'roster') {
