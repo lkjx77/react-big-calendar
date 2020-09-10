@@ -80,8 +80,8 @@ class TimeGridHeaderRoster extends React.Component {
               {header}
             </a>
           ) : (
-              <span>{header}</span>
-            )}
+            <span>{header}</span>
+          )}
         </div>
       )
     })
@@ -124,14 +124,13 @@ class TimeGridHeaderRoster extends React.Component {
         onDoubleClick={this.props.onDoubleClickEvent}
         onSelectSlot={this.props.onSelectSlot}
         longPressThreshold={this.props.longPressThreshold}
-        renderContent="roster"
+        // renderContent="roster"
       />
     )
   }
 
   render() {
     let {
-      width,
       rtl,
       resources,
       range,
@@ -144,17 +143,15 @@ class TimeGridHeaderRoster extends React.Component {
       scrollRef,
       localizer,
       isOverflowing,
-      employees,
-      components: { timeGutterHeader: TimeGutterHeader },
     } = this.props
 
     let style = {}
     if (isOverflowing) {
       style[rtl ? 'marginLeft' : 'marginRight'] = `${scrollbarSize()}px`
     }
-    style['overflow'] = 'auto'
-    style['minHeight'] = '300px'
-    style['maxHeight'] = '900px'
+    style.overflow = 'auto'
+    style.minHeight = '300px'
+    style.maxHeight = '900px'
 
     const groupedEvents = resources.groupEvents(events)
 
@@ -183,7 +180,7 @@ class TimeGridHeaderRoster extends React.Component {
             <div
               className={`rbc-row rbc-time-header-cell${
                 range.length <= 1 ? ' rbc-time-header-cell-single-day' : ''
-                }`}
+              }`}
             >
               {this.renderHeaderCells(range)}
             </div>
@@ -206,8 +203,8 @@ class TimeGridHeaderRoster extends React.Component {
               onDoubleClick={this.props.onDoubleClickEvent}
               onSelectSlot={this.props.onSelectSlot}
               longPressThreshold={this.props.longPressThreshold}
-              renderContent="roster"
-              employees={employees}
+              // renderContent="roster"
+              // employees={employees}
             />
           </div>
         ))}

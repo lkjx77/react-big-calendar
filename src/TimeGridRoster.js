@@ -189,9 +189,7 @@ export default class TimeGridRoster extends Component {
       localizer,
       min,
       max,
-      showMultiDayTimes,
       longPressThreshold,
-      employees,
     } = this.props
 
     width = width || this.state.gutterWidth
@@ -201,9 +199,7 @@ export default class TimeGridRoster extends Component {
 
     this.slots = range.length
 
-    let allDayEvents = [],
-      rangeEvents = [],
-      allEventsInRange = []
+    let allEventsInRange = []
 
     // events.forEach(event => {
     //   if (inRange(event, start, end, accessors)) {
@@ -254,7 +250,6 @@ export default class TimeGridRoster extends Component {
           onDoubleClickEvent={this.props.onDoubleClickEvent}
           onDrillDown={this.props.onDrillDown}
           getDrilldownView={this.props.getDrilldownView}
-          employees={employees}
         />
         <div
           ref="content"

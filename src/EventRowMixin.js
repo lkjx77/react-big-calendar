@@ -37,8 +37,8 @@ export default {
       localizer,
       slotMetrics,
       components,
-      renderContent,
-      employees,
+      // renderContent,
+      // employees,
     } = props
 
     let continuesPrior = slotMetrics.continuesPrior(event)
@@ -56,8 +56,8 @@ export default {
         continuesPrior={continuesPrior}
         continuesAfter={continuesAfter}
         selected={isSelected(event, selected)}
-        renderContent={renderContent}
-        employees={employees}
+        // renderContent={renderContent}
+        // employees={employees}
       />
     )
   },
