@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import cn from 'classnames'
 import dates from './utils/dates'
-import moment from 'moment'
 import _ from 'lodash'
 
 let propTypes = {
@@ -40,8 +39,6 @@ class EventCell extends React.Component {
       accessors,
       getters,
       children,
-      renderContent,
-      employees,
       components: { event: Event, eventWrapper: EventWrapper },
       ...props
     } = this.props
@@ -52,52 +49,50 @@ class EventCell extends React.Component {
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
 
-    let employeeId = event.EmployeeID
-
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
 
     let userProps = getters.eventProp(event, start, end, selected)
 
     // format title HH:MM - HH:MM : title
-    const startTime = moment(start).format('hh:mm A')
-    const endTime = moment(end).format('hh:mm A')
+    // const startTime = moment(start).format('hh:mm A')
+    // const endTime = moment(end).format('hh:mm A')
 
-    let titleFormmat = 'xxx'
+    // let titleFormmat = ''
 
-    if (showAsAllDay) {
-      const employee = _.find(employees, { EmployeeAutoID: employeeId })
+    // if (showAsAllDay) {
+    //   const employee = _.find(employees, { EmployeeAutoID: employeeId })
 
-      if (employee != undefined) {
-        titleFormmat = `test:${employee.EmployeeFirstName}.${_.first(
-          employee.EmployeeLastName
-        )}`
-      }
-    } else {
-      titleFormmat = `${startTime} - ${endTime}: ${title}`
-    }
+    //   if (employee != undefined) {
+    //     titleFormmat = `test:${employee.EmployeeFirstName}.${_.first(
+    //       employee.EmployeeLastName
+    //     )}`
+    //   }
+    // } else {
+    //   titleFormmat = `${startTime} - ${endTime}: ${title}`
+    // }
 
-    if (renderContent !== undefined && renderContent === 'roster') {
-      const employee = _.find(employees, { EmployeeID: employeeId })
-      if (employee !== undefined) {
-        // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
-        titleFormmat = `${employee.EmployeeFirstName}.${_.first(
-          employee.EmployeeLastName
-        )}：${startTime} - ${endTime}`
-      }
-    }
+    // if (renderContent !== undefined && renderContent === 'roster') {
+    //   const employee = _.find(employees, { EmployeeID: employeeId })
+    //   if (employee !== undefined) {
+    //     // FirstName.LastName: HH:MM AM:PM - HH:MM AM:PM
+    //     titleFormmat = `${employee.EmployeeFirstName}.${_.first(
+    //       employee.EmployeeLastName
+    //     )}：${startTime} - ${endTime}`
+    //   }
+    // }
 
     const content = (
-      <div className="rbc-event-content" title={titleFormmat || undefined}>
+      <div className="rbc-event-content" title={title || undefined}>
         {Event ? (
           <Event
             event={event}
-            title={titleFormmat}
+            title={title}
             isAllDay={allDay}
             localizer={localizer}
           />
         ) : (
-          titleFormmat
+          title
         )}
       </div>
     )
