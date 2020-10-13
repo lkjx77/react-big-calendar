@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom'
 
 import { eventSegments } from '../../utils/eventLevels'
 import Selection, { getBoundsForNode } from '../../Selection'
-import EventRow from '../../EventRow'
+// import EventRow from '../../EventRow'
 import { dragAccessors } from './common'
 
 const propTypes = {}
@@ -119,9 +119,26 @@ class WeekWrapper extends React.PureComponent {
     let rowBox = getBoundsForNode(node)
     let cursorInRow = pointInBox(rowBox, point)
 
+    // console.log(`right resize point : ${JSON.stringify(point)}`)
+    // console.log(`right resize node: ${JSON.stringify(node)}`)
+    // console.log(`right resize rowBox: ${JSON.stringify(rowBox)}`)
+
     if (direction === 'RIGHT') {
+      // console.log(`cursorInRow: ${cursorInRow}`)
+      // console.log(`metrics.first: ${JSON.stringify(metrics.first)}`)
+      // console.log(`metrics.last: ${JSON.stringify(metrics.last)}`)
+      // console.log(`metrics.slots: ${metrics.slots}`)
+
       if (cursorInRow) {
         if (metrics.last < start) return this.reset()
+
+        // const cursorInRowSlot = getSlotAtX(
+        //   rowBox,
+        //   point.x,
+        //   false,
+        //   metrics.slots
+        // )
+
         // add min
         end = dates.add(
           metrics.getDateForSlot(
@@ -130,11 +147,31 @@ class WeekWrapper extends React.PureComponent {
           1,
           'day'
         )
+        // console.log(`cursorInRowSlot: ${cursorInRowSlot}, end: ${end}`)
       } else if (
-        dates.inRange(start, metrics.first, metrics.last) ||
-        (rowBox.bottom < point.y && +metrics.first > +start)
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right < point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        // this.setState({ segment: null })
+        // return
+        end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (rowBox.bottom < point.y && +metrics.first > +start) {
+        end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right > point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
       ) {
         end = dates.add(metrics.last, 1, 'milliseconds')
+      } else if (
+        dates.inRange(start, metrics.first, metrics.last) &&
+        (rowBox.right > point.x && rowBox.top > point.y)
+      ) {
+        this.setState({ segment: null })
+        return
       } else {
         this.setState({ segment: null })
         return
@@ -142,6 +179,7 @@ class WeekWrapper extends React.PureComponent {
 
       end = dates.max(end, dates.add(start, 1, 'day'))
     } else if (direction === 'LEFT') {
+      // console.log(`LEFT resize`)
       // inbetween Row
       if (cursorInRow) {
         if (metrics.first > end) return this.reset()
@@ -150,11 +188,23 @@ class WeekWrapper extends React.PureComponent {
           getSlotAtX(rowBox, point.x, false, metrics.slots)
         )
       } else if (
-        dates.inRange(end, metrics.first, metrics.last) ||
-        (rowBox.top > point.y && +metrics.last < +end)
+        dates.inRange(end, metrics.first, metrics.last) &&
+        (rowBox.left > point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
+      ) {
+        start = dates.add(metrics.first, -1, 'milliseconds')
+      } else if (rowBox.top > point.y && +metrics.last < +end) {
+        start = dates.add(metrics.first, -1, 'milliseconds')
+      } else if (
+        dates.inRange(end, metrics.first, metrics.last) &&
+        (rowBox.left < point.x &&
+          rowBox.top < point.y &&
+          rowBox.bottom > point.y)
       ) {
         start = dates.add(metrics.first, -1, 'milliseconds')
       } else {
+        // console.log(`Left null:`)
         this.reset()
         return
       }
@@ -162,6 +212,9 @@ class WeekWrapper extends React.PureComponent {
       start = dates.min(dates.add(end, -1, 'day'), start)
     }
 
+    // console.log(
+    //   `event-> ${JSON.stringify(event)} , start: ${start}, end: ${end}`
+    // )
     this.update(event, start, end)
   }
 
@@ -227,9 +280,10 @@ class WeekWrapper extends React.PureComponent {
   }
 
   render() {
-    const { children, accessors } = this.props
+    // const { children, accessors } = this.props
+    const { children } = this.props
 
-    let { segment } = this.state
+    // let { segment } = this.state
 
     // console.log(`draw segment: ${JSON.stringify(segment)}`)
 
@@ -246,7 +300,7 @@ class WeekWrapper extends React.PureComponent {
           `slotMetrics.last: ${JSON.stringify(this.props.slotMetrics.last)}`
         )}
         {console.log(`addtional segment: ${JSON.stringify(segment)}`)} */}
-        {segment && (
+        {/* {segment && (
           <EventRow
             {...this.props}
             selected={null}
@@ -257,7 +311,7 @@ class WeekWrapper extends React.PureComponent {
               ...dragAccessors,
             }}
           />
-        )}
+        )} */}
 
         <div className="segment end" />
       </div>
